@@ -1,0 +1,3 @@
+Para dejar tu entorno listo, solo debes ejecutar el siguiente comando en tu terminal:
+
+pip install -r requirements.txt
