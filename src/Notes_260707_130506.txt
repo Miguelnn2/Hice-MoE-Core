@@ -1,0 +1,9 @@
+Ejemplo real de ejecución en consola:
+
+Para levantar un Nodo Servidor con los expertos 0, 1, 2, 3 asignados en el puerto 8001:
+
+python src/main.py --mode node --model /ruta/absoluta/tu_modelo_moe.gguf --port 8001 --experts 0-3
+
+Para correr el test analítico de red en otra ventana de Linux Mint y verificar que las tuberías transmitan los tensores:
+
+python src/main.py --mode test --port 8002
