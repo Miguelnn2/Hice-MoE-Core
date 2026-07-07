@@ -1,0 +1,5 @@
+Instrucciones de compilación:
+​Debes guardar este archivo dentro de una carpeta llamada proto/. Una vez que lo guardes, debes compilarlo desde tu terminal de Linux Mint para que gRPC genere automáticamente las clases en Python que usaremos en los siguientes archivos.
+​Ejecuta este comando en la raíz del proyecto:
+
+python -m grpc_tools.protoc -I./proto --python_out=./src --grpc_python_out=./src ./proto/inference.proto

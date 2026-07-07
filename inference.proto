@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package hivemoe;
+
+// Representación binaria de un tensor (matriz matemática de la IA)
+message Tensor {
+repeated int32 shape = 1; // Dimensiones de la matriz (ej. [1, 4096])
+string dtype = 2; // Tipo de dato numérico (ej. "float16", "float32")
+bytes raw_data = 3; // Los números binarios puros comprimidos en bytes
+}
+
+// Estructura de red obligatoria para solicitar ayuda a un nodo P2P
+message InferenceRequest {
+string model_hash = 1; // Hash único para verificar si el nodo tiene el modelo correcto
+string model_type = 2; // Filtro de admisión: Debe ser estrictamente "MoE"
+int32 rango_inicio = 3; // Índice de inicio del bloque de expertos asignado
+int32 rango_fin = 4; // Índice de fin del bloque de expertos asignado
+Tensor input_tensor = 5; // Los datos intermedios que tu PC le envía para calcular
+}
+
+// Respuesta matemática empaquetada que el nodo devuelve a tu PC
+message InferenceResponse {
+enum Status {
+OK = 0;
+RECHAZADO_TIPO_INVALIDO = 1; // Si el modelo enviado no es MoE (Filtro de Desvío)
+ERROR_HARDWARE_SATURADO = 2; // Si el nodo asistente superó sus límites de hardware
+ERROR_CALCULO = 3; // Fallo matemático en la multiplicación de matrices
+}
+Status status = 1;
+string mensaje_error = 2;
+Tensor output_tensor = 3; // El fragmento de la matriz calculado
+}
+
+// El canal de comunicación en tiempo real que controlará los sockets
+service HiveInferenceService {
+rpc ProcesarExpertosMoE (InferenceRequest) returns (InferenceResponse);
+}
