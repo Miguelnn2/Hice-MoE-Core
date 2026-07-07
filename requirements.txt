@@ -1,0 +1,20 @@
+====================================================================
+HiveMoE-Core - Entorno de Dependencias de Producción (Archivo 1 de 9)
+====================================================================
+
+Núcleo de comunicación binaria y gRPC para la malla P2P
+grpcio==1.64.1
+grpcio-tools==1.64.1
+protobuf==5.27.1
+
+Motor de procesamiento numérico y manipulación de tensores
+numpy==1.26.4
+
+Inferencia local optimizada de alta eficiencia para modelos GGUF
+llama-cpp-python==0.2.79
+
+Capa de red HTTP auxiliar para el descubrimiento inicial de nodos
+requests==2.32.3
+
+Monitoreo de recursos del sistema en tiempo real
+psutil==5.9.8
